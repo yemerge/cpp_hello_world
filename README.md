@@ -1,3 +1,3 @@
-# cpp_project_template
+# cpp_hello_world
 
-The template for cpp projects
+Output the received message

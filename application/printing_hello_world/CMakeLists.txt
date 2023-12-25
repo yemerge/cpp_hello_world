@@ -7,10 +7,10 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
 project(
-    CPP_HELLO_WORLD
+    PRINTING_HELLO_WORLD
     LANGUAGES CXX
     VERSION 1.0.0
-    DESCRIPTION "Output the received message"
+    DESCRIPTION ""
     HOMEPAGE_URL "https://github.com/yemerge/cpp_hello_world"
 )
 
@@ -89,41 +89,44 @@ message(STATUS "${PROJECT_NAME}_RESOURCE_PATH: ${${PROJECT_NAME}_RESOURCE_PATH}"
 message(STATUS "")
 
 add_subdirectory(${${PROJECT_NAME}_THIRDPARTY_PATH})
-add_subdirectory(${${PROJECT_NAME}_MODULE_PATH})
-add_subdirectory(${${PROJECT_NAME}_APPLICATION_PATH})
+# add_subdirectory(${${PROJECT_NAME}_MODULE_PATH})
+# add_subdirectory(${${PROJECT_NAME}_APPLICATION_PATH})
 
 set(${PROJECT_NAME}_SOURCE_FILES
-  # src/main.cpp
+  src/main.cpp
   # ! Add source files here
 )
 
 # ! If you want to make a library, use the following code
 # add_library(${PROJECT_NAME} STATIC
-# ${${PROJECT_NAME}_SOURCE_FILES}
+#   ${${PROJECT_NAME}_SOURCE_FILES}
 # )
 
 # ! If you want to make an executable, use the following code
-# add_executable(${PROJECT_NAME}
-# ${${PROJECT_NAME}_SOURCE_FILES}
-# )
+add_executable(${PROJECT_NAME}
+  ${${PROJECT_NAME}_SOURCE_FILES}
+)
 
 # ! If you want to add include directories and link libraries, use the following code
-# target_include_directories(${PROJECT_NAME} PUBLIC
-# ${${PROJECT_NAME}_INCLUDE_PATH}
+target_include_directories(${PROJECT_NAME} PUBLIC
+  ${${PROJECT_NAME}_INCLUDE_PATH}PRINTING_HELLO_WORLD
 
-# ! Add include path here
-# )
-# target_link_libraries(${PROJECT_NAME} PRIVATE
+  # ! Add include path here
+)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE
+  UTILS
 
 # ! Add libraries here
-# )
-# add_dependencies(${PROJECT_NAME}
+)
 
+add_dependencies(${PROJECT_NAME}
+  UTILS
 # ! Add dependencies here
-# )
-# target_compile_options(${PROJECT_NAME} PRIVATE
-# ${CPP_COMFILE_FLAGS}
-# )
+)
+target_compile_options(${PROJECT_NAME} PRIVATE
+  ${CPP_COMFILE_FLAGS}
+)
 
 message(STATUS)
 message(STATUS "Finished all process in ${PROJECT_NAME} CMakeLists.txt.")
